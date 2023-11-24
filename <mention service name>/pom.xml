@@ -1,0 +1,449 @@
+<?xml version="<mention specific version required>" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/<mention specific version required>"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/<mention specific version required> http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion><mention specific version required></modelVersion>
+
+    <groupId>io.mosip.<mention service name></groupId>
+    <artifactId><mention service name>-parent</artifactId>
+    <version><mention specific version required>-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name><mention service name></name>
+    <description>Parent project of MOSIP <mention service name></description>
+    <url>https://github.com/mosip/<mention service name></url>
+
+    <licenses>
+        <license>
+            <name>MPL <mention specific version required></name>
+            <url>https://www.mozilla.org/en-US/MPL/<mention specific version required>/</url>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git://github.com/mosip/<mention service name>.git</connection>
+        <developerConnection>scm:git:ssh://github.com:mosip/<mention service name>.git</developerConnection>
+        <url>https://github.com/mosip/<mention service name></url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Mosip</name>
+            <email>mosip.emailnotifier@gmail.com</email>
+            <organization>io.mosip</organization>
+            <organizationUrl>https://github.com/mosip/<mention service name></organizationUrl>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>ossrh</id>
+            <name>CentralRepository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>MavenCentral</name>
+            <layout>default</layout>
+            <url>https://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <<mention service name>.core.version><mention specific version required>-SNAPSHOT</<mention service name>.core.version>
+        <kernel.core.version><mention specific version required>-SNAPSHOT</kernel.core.version>
+        <project.build.sourceEncoding><mention specific version required></project.build.sourceEncoding>
+        <maven.compiler.source><mention specific version required></maven.compiler.source>
+        <maven.compiler.target><mention specific version required></maven.compiler.target>
+        <maven.compiler.version><mention specific version required></maven.compiler.version>
+        <maven.jar.plugin.version><mention specific version required></maven.jar.plugin.version>
+        <maven.war.plugin.version><mention specific version required></maven.war.plugin.version>
+        <maven.surefire.plugin.version><mention specific version required></maven.surefire.plugin.version>
+        <maven.jacoco.version><mention specific version required></maven.jacoco.version>
+        <maven.sonar.plugin.version><mention specific version required></maven.sonar.plugin.version>
+        <maven.javadoc.version><mention specific version required></maven.javadoc.version>
+
+        <!-- Core -->
+        <spring.version><mention specific version required>.RELEASE</spring.version>
+        <spring.boot.version><mention specific version required>.RELEASE</spring.boot.version>
+        <spring.data.version><mention specific version required>.RELEASE</spring.data.version>
+        <spring-cloud-config.version><mention specific version required>.RELEASE</spring-cloud-config.version>
+
+        <!-- Miscellaneous -->
+        <javax.validation-api.version><mention specific version required>.Final</javax.validation-api.version>
+        <jackson.version><mention specific version required></jackson.version>
+
+        <!-- Swagger -->
+        <swagger.version><mention specific version required></swagger.version>
+
+        <!-- Data Access -->
+        <eclipselink.version><mention specific version required></eclipselink.version>
+        <mysql.connector.version><mention specific version required></mysql.connector.version>
+        <h2.version><mention specific version required></h2.version>
+        <postgresql.version><mention specific version required></postgresql.version>
+
+        <!-- For Cache -->
+        <ignite.version><mention specific version required></ignite.version>
+        <apache.httpclient.version><mention specific version required></apache.httpclient.version>
+
+        <!-- Support tools & utilities -->
+        <commons-math3><mention specific version required></commons-math3>
+        <commons-lang3><mention specific version required></commons-lang3>
+        <commons.beanutils.version><mention specific version required></commons.beanutils.version>
+        <commons.configuration2.version><mention specific version required></commons.configuration2.version>
+        <commons-collections4.version><mention specific version required></commons-collections4.version>
+
+
+        <!-- Test & Logging -->
+        <junit.version><mention specific version required></junit.version>
+        <logback.version><mention specific version required></logback.version>
+        <slf4j.version><mention specific version required></slf4j.version>
+        <mockito.version><mention specific version required></mockito.version>
+
+        <!-- Lombok -->
+        <lombok.version><mention specific version required></lombok.version>
+
+        <!-- Json Simple -->
+        <jsonsimple.version><mention specific version required></jsonsimple.version>
+
+        <uuid.fasterxml.version><mention specific version required></uuid.fasterxml.version>
+        <org.json.version><mention specific version required></org.json.version>
+        <modelmapper.version><mention specific version required></modelmapper.version>
+        <java.interceptor.version><mention specific version required></java.interceptor.version>
+        <icu.version><mention specific version required></icu.version>
+
+        <sonar.coverage.exclusions>
+            **/code/**,
+            **/config/**,
+            **/dao/**,
+            **/dto/**,
+            **/entity/**,
+            **/errorcodes/**,
+            **/exception/**,
+            **/exception/system/**,
+            **/exception/util/**,
+            **/repository/**,
+            **/*Config.java,
+            **/*Application.java,
+            **/batchjob/**,
+            **/util/**,
+            **/stateUtil/**,
+            **/preregistration/application/dto/*.java,
+            **/preregistration/application/dto/ApplicantTypeCodeDTO.java,
+            **/preregistration/application/dto/ApplicantTypeKeyValueDTO.java,
+            **/preregistration/datasync/dto/*.java,
+            **/preregistration/booking/dto/*.java
+        </sonar.coverage.exclusions>
+        <sonar.cpd.exclusions>**/dto/**,**/entity/**,**/config/**</sonar.cpd.exclusions>
+
+        <maven.jar.plugin.version><mention specific version required></maven.jar.plugin.version>
+        <maven.war.plugin.version><mention specific version required></maven.war.plugin.version>
+
+    </properties>
+    <modules>
+        <module><mention module name></module>
+        ##<module><mention module name></module>##
+        ##<module><mention module name></module>##
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version><mention specific version required></version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version><mention specific version required></version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version><mention specific version required></version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version><mention specific version required></version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version><mention specific version required></version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version><mention specific version required></version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version><mention specific version required></version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version><mention specific version required></version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version><mention specific version required></version>
+        </dependency>
+    </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven.jar.plugin.version}</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Project-Name>${project.name}</Project-Name>
+                                <Project-Version>${project.version}</Project-Version>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven.war.plugin.version}</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Project-Name>${project.name}</Project-Name>
+                                <Project-Version>${project.version}</Project-Version>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <skipTests>${skipTests}</skipTests>
+                    <skip>false</skip>
+                    <argLine>
+                        ${argLine} --add-opens java.xml/jdk.xml.internal=ALL-UNNAMED --illegal-access=permit
+                    </argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${maven.jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version><mention specific version required></version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version><mention specific version required></version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version><mention specific version required></version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Project-Name>${project.name}</Project-Name>
+                            <Project-Version>${project.version}</Project-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Project-Name>${project.name}</Project-Name>
+                            <Project-Version>${project.version}</Project-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version><mention specific version required></version>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+                    <includeOnlyProperties>
+                        <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
+                    </includeOnlyProperties>
+                    <commitIdGenerationMode>full</commitIdGenerationMode>
+                    <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+                    <!-- <format>json</format> -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <properties>
+                <sonar.sources>.</sonar.sources>
+                <sonar.inclusions>src/main/java/**,src/main/resources/**</sonar.inclusions>
+                <sonar.exclusions>${sonar.coverage.exclusions}</sonar.exclusions>
+                <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                        <version>${maven.sonar.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sonar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
