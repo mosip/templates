@@ -10,3 +10,4 @@
 4) db_scripts - Add the required sql under db_scripts folder also replace the service name under db_scripts
 
 5) db_upgrade_scripts - Rename the service name under db_upgrade_script, add rollback.sql and upgrade.sql scripts.
+6) 
