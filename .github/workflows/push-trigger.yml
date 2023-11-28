@@ -1,7 +1,7 @@
 ##  Reference for creating push-trigger.yml :
 
 ---
-name: Maven Package upon a push
+name: <Build-Tool>
 
 on:
   release:
@@ -25,11 +25,11 @@ on:
       - MOSIP*
 
 jobs:
-  build-maven-pre-registration:
+  build-<mention build-tool name>-<mention service name>:
     uses: mosip/kattu/.github/workflows/maven-build.yml@master
     with:
-      SERVICE_LOCATION: ./pre-registration
-      BUILD_ARTIFACT: pre-registration
+      SERVICE_LOCATION: ./<mention service location>
+      BUILD_ARTIFACT: <mention build artifact name>
     secrets:
       OSSRH_USER: ${{ secrets.OSSRH_USER }}
       OSSRH_SECRET: ${{ secrets.OSSRH_SECRET }}
@@ -39,10 +39,10 @@ jobs:
 
   publish_to_nexus:
     if: "${{ !contains(github.ref, 'master') && github.event_name != 'pull_request' }}"
-    needs: build-maven-pre-registration
+    needs: build-<mention build-tool name>-<mention service name>
     uses: mosip/kattu/.github/workflows/maven-publish-to-nexus.yml@master
     with:
-      SERVICE_LOCATION: ./pre-registration
+      SERVICE_LOCATION: ./<mention location>
     secrets:
       OSSRH_USER: ${{ secrets.OSSRH_USER }}
       OSSRH_SECRET: ${{ secrets.OSSRH_SECRET }}
@@ -52,16 +52,13 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
   build-dockers:
-    needs: build-maven-pre-registration
+    needs: build-<mention build-tool name>-<mention service name>
     strategy:
       matrix:
         include:
-          - SERVICE_LOCATION: 'pre-registration/pre-registration-application-service'
-            SERVICE_NAME: 'pre-registration-application-service'
-            BUILD_ARTIFACT: 'pre-registration'
-          - SERVICE_LOCATION: 'pre-registration/pre-registration-batchjob'
-            SERVICE_NAME: 'pre-registration-batchjob'
-            BUILD_ARTIFACT: 'pre-registration'
+          - SERVICE_LOCATION: '<mention service location path>'
+            SERVICE_NAME: '<mention service name deployed under this service>'
+            BUILD_ARTIFACT: '<mention build artifact name>'
       fail-fast: false
     name: ${{ matrix.SERVICE_NAME }}
     uses: mosip/kattu/.github/workflows/docker-build.yml@master
@@ -76,11 +73,11 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
   sonar_analysis:
-    needs: build-maven-pre-registration
+    needs: build-<mention build-tool name>-<mention service name>
     if: "${{  github.event_name != 'pull_request' }}"
     uses: mosip/kattu/.github/workflows/maven-sonar-analysis.yml@master
     with:
-      SERVICE_LOCATION: ./pre-registration
+      SERVICE_LOCATION: ./<mention location path>
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       ORG_KEY: ${{ secrets.ORG_KEY }}
