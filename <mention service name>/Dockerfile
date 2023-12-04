@@ -1,8 +1,7 @@
 ## Reference for creating an Dockerfile:
 
----
 ## mention requred version of java
-FROM
+FROM <tag-name>
 
 ARG SOURCE
 ARG COMMIT_HASH
@@ -14,10 +13,11 @@ LABEL commit_hash=${COMMIT_HASH}
 LABEL commit_id=${COMMIT_ID}
 LABEL build_time=${BUILD_TIME}
 
-ARG
+# You can add multiple the environment (ENV) and argument variables (ARG).
 
-ENV
+ARG <arg_name>=arg-name
 
+ENV <env-variable-name>="env-var-value"
 
 # can be passed during Docker build as build time environment for github branch to pickup configuration from.
 ARG container_user=mosip
@@ -40,19 +40,18 @@ WORKDIR /home/${container_user}
 ENV work_dir=/home/${container_user}
 
 ## Add required path according location of file.multiple ADD can be added to Dockerfile.
-ADD <mention service name>/<mention folder name>/target ./<mention folder name>/target
+ADD <mention service name>/<mention folder name>/target ./<mention folder name>/
 
-ADD configure.sh configure.sh
+ADD entrypoint.sh $work_dir/entrypoint.sh
+
+RUN chmod +x $work_dir/entrypoint.sh
 
 # change permissions of file inside working dir
-RUN chown -R ${container_user}:${container_user} /home/${container_user}
-RUN chown -R ${container_user}:${container_user} /var/www
+RUN chown -R ${container_user}:${container_user} <other-directories>
+RUN chown -R ${container_user}:${container_user} <other-directories>
 
 # select container user for all tasks
-#USER ${container_user_uid}:${container_user_gid}
+USER ${container_user_uid}:${container_user_gid}
 
 ENTRYPOINT ["./entrypoint.sh" ]
 
----
-
-## The complete block above explains creation of Dockerfile.

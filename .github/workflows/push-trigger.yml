@@ -2,12 +2,14 @@
 
 ---
 name: <Build-Tool>
+## For UI based modules
+#name: <service name>-ui build upon a push
 
 on:
   release:
     types: [published]
   pull_request:
-    types: [opened]
+    types: [opened, reopened, synchronize]
   workflow_dispatch:
     inputs:
       message:

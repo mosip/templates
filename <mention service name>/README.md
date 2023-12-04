@@ -14,6 +14,5 @@ The project requires <mention build tool>.
     $ mvn install -DskipTests=true -<mention required service>.skip=true -Dgpg.skip=true
     ```
 1. Build Docker for a service:
-    ```
-    $ cd <service folder>
-    $ docker build -f Dockerfile
+
+   docker build . --build-arg SOURCE=mosip --build-arg COMMIT_HASH= --build-arg COMMIT_ID= --build-arg BUILD_TIME=$(date +'%Y-%m-%d-%H-%M-%S') --file Dockerfile --tag "/:"
