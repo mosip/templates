@@ -1,7 +1,7 @@
 ## Reference for creating an Dockerfile:
 
 ## mention requred version of java
-FROM <tag-name>
+FROM <docker-image-name>:<tag-name>
 
 ARG SOURCE
 ARG COMMIT_HASH
